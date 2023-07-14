@@ -21,7 +21,7 @@ async function main() {
         pricePerDay: 250,
         highlights: ["Café da manhã incluso", "Piscina", "Wifi grátis", "Estacionamento grátis", "Vista paradisíaca", "Luxuoso"],
         recommended: true,
-        maxGuests: 10,
+        maxGuests: 5,
       },
       {
         name: "Hotel Palace",
@@ -41,7 +41,7 @@ async function main() {
         pricePerDay: 350,
         highlights: ["Café da manhã incluso", "Piscina", "Wifi grátis", "Estacionamento grátis", "Vista paradisíaca", "Luxuoso"],
         recommended: true,
-        maxGuests: 10,
+        maxGuests: 5,
       },
       {
         name: "Royal Oasis",
@@ -61,7 +61,7 @@ async function main() {
         pricePerDay: 400,
         highlights: ["Café da manhã incluso", "Piscina", "Wifi grátis", "Estacionamento grátis", "Vista paradisíaca", "Luxuoso"],
         recommended: true,
-        maxGuests: 10,
+        maxGuests: 5,
       },
       {
         name: "Azure Haven Retreat",
@@ -81,7 +81,7 @@ async function main() {
         pricePerDay: 600,
         highlights: ["Café da manhã incluso", "Piscina", "Wifi grátis", "Estacionamento grátis", "Vista paradisíaca", "Luxuoso"],
         recommended: true,
-        maxGuests: 10,
+        maxGuests: 5,
       },
       {
         name: "Palazzo Sereno",
@@ -100,8 +100,8 @@ async function main() {
         ],
         pricePerDay: 400,
         highlights: ["Café da manhã incluso", "Piscina", "Wifi grátis", "Estacionamento grátis", "Vista paradisíaca", "Luxuoso"],
-        recommended: true,
-        maxGuests: 10,
+        recommended: false,
+        maxGuests: 5,
       },
       {
         name: "Mountain Peak Lodge",
@@ -120,8 +120,8 @@ async function main() {
         ],
         pricePerDay: 700,
         highlights: ["Café da manhã incluso", "Piscina", "Wifi grátis", "Estacionamento grátis", "Vista paradisíaca", "Luxuoso"],
-        recommended: true,
-        maxGuests: 10,
+        recommended: false,
+        maxGuests: 5,
       },
       {
         name: "Encanto da Serra",
@@ -140,8 +140,8 @@ async function main() {
         ],
         pricePerDay: 300,
         highlights: ["Café da manhã incluso", "Piscina", "Wifi grátis", "Estacionamento grátis", "Vista paradisíaca", "Luxuoso"],
-        recommended: true,
-        maxGuests: 10,
+        recommended: false,
+        maxGuests: 5,
       },
       {
         name: "Rancho Sereno",
@@ -160,8 +160,8 @@ async function main() {
         ],
         pricePerDay: 100,
         highlights: ["Café da manhã incluso", "Piscina", "Wifi grátis", "Estacionamento grátis", "Vista paradisíaca", "Luxuoso"],
-        recommended: true,
-        maxGuests: 10,
+        recommended: false,
+        maxGuests: 5,
       },
       {
         name: "Chalé Serenidade",
@@ -180,8 +180,8 @@ async function main() {
         ],
         pricePerDay: 200,
         highlights: ["Café da manhã incluso", "Piscina", "Wifi grátis", "Estacionamento grátis", "Vista paradisíaca", "Luxuoso"],
-        recommended: true,
-        maxGuests: 10,
+        recommended: false,
+        maxGuests: 5,
       },
     ],
   });
