@@ -20,7 +20,6 @@ const TripHeader = ({trip}: TripHeaderProps) => {
                 />
             </div>
 
-            {/* TITULO E INFORMAÇÕES */}
             <div className="flex flex-col p-5">
                 <h1 className="font-semibold text-xl text-primaryDarker">{trip.name}</h1>
 
