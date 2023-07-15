@@ -38,7 +38,7 @@ const Header = () => {
                 <Image height={30} width={30} src={data.user.image!} alt={data.user.name!} className="rounded-full shadow-md"/>
 
                 {menuIsOpen && (
-                    <div className="absolute top-12 left-0 w-full h-full bg-white rounded-lg shadow-md flex flex-col justify-center items-center">
+                    <div className="z-50 absolute top-12 left-0 w-full h-full bg-white rounded-lg shadow-md flex flex-col justify-center items-center">
                         <button className="text-prymary text-sm font-semibold" onClick={handleLogoutClick}>
                             Logout
                         </button>
