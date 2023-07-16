@@ -10,20 +10,21 @@ import ptBR from 'date-fns/locale/pt-BR'
 import Button from '@/components/Button';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 
 const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
   const [trip, setTrip] = useState<Trip | null>()
   const [totalPrice, setTotalPrice] = useState<number>();
 
-  const {status} = useSession();
+  const {status, data} = useSession();
   
   const router = useRouter();
 
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const fetchTrip =async () => {
+    const fetchTrip = async () => {
       const response = await fetch(`http://localhost:3000/api/trips/check`, {
         method: "POST",
         body: JSON.stringify({
@@ -51,6 +52,30 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
   }, [status, searchParams, params, router]);
 
   if(!trip) return null;
+
+  const handleBuyClick = async () => {
+   const res = await fetch("http://localhost:3000/api/trips/reservation", {
+      method: "POST",
+      body: Buffer.from(
+        JSON.stringify({
+          tripId: params.tripId,
+          startDate: searchParams.get("startDate"),
+          endDate: searchParams.get("endDate"),
+          guests: Number(searchParams.get("guests")),
+          userId: (data?.user as any)?.id!,
+          totalPrice: totalPrice,
+        })
+      ),
+    });
+
+    if(!res.ok){
+      return toast.error("Ocorreu um erro ao ralizar a reserva.", {position: "bottom-center"});
+    }
+
+    router.push("/");
+
+    toast.success("Reserva realizada com sucesso!", {position: "bottom-center"})
+  };
 
   const startDate = new Date(searchParams.get("startDate") as string);
   const endDate = new Date(searchParams.get("endDate") as string);
@@ -95,7 +120,7 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
         <h3 className="font-semibold mt-5">Hóspedes</h3>
         <p>{guests} hóspedes</p>
 
-        <Button className="">Finalizar Compras</Button>
+        <Button className="" onClick={handleBuyClick}>Finalizar Compras</Button>
       </div>
     </div>
   );
