@@ -5,7 +5,7 @@ import { Poppins } from 'next/font/google'
 import Header from "@/components/Header"
 import Footer from '@/components/Footer'
 
-const inter = Poppins({ subsets: ['latin'], weight: [
+const poppins = Poppins({ subsets: ['latin'], weight: [
   "400",
   "500",
   "600",
@@ -26,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={poppins.className}>
         <NextAuthProvider>
         <Header />
         
