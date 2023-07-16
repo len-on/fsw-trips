@@ -8,12 +8,18 @@ import React, { useState, useEffect } from 'react';
 import ReactCountryFlag from 'react-country-flag';
 import ptBR from 'date-fns/locale/pt-BR'
 import Button from '@/components/Button';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 
 const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
   const [trip, setTrip] = useState<Trip | null>()
   const [totalPrice, setTotalPrice] = useState<number>();
+
+  const {status} = useSession();
   
+  const router = useRouter();
+
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -31,10 +37,14 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
 
       setTrip(trip)
       setTotalPrice(totalPrice)
+    };
+
+    if(status === "unauthenticated") {
+      router.push("/");
     }
 
     fetchTrip();
-  }, [])
+  }, [status])
 
   if(!trip) return null;
 
@@ -81,7 +91,7 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
         <h3 className="font-semibold mt-5">Hóspedes</h3>
         <p>{guests} hóspedes</p>
 
-        <Button className="mt-5">Finalizar Compras</Button>
+        <Button className="">Finalizar Compras</Button>
       </div>
     </div>
   );
