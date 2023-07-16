@@ -5,6 +5,7 @@ import { Prisma } from '@prisma/client';
 import ReactCountryFlag from 'react-country-flag';
 import ptBR from 'date-fns/locale/pt-BR'
 import Button from '@/components/Button';
+import { toast } from "react-toastify";
 
 interface UserReservationItemProps {
   reservation: Prisma.TripReservationGetPayload<{
@@ -14,6 +15,18 @@ interface UserReservationItemProps {
 
 const UserReservationItem = ({ reservation }: UserReservationItemProps) => {
   const { trip } = reservation;
+
+  const handleDeleteClick = async () => {
+    const res = await fetch(`/api/trips/reservation/${reservation.id}`, {
+      method: "DELETE",
+    });
+
+    if(!res.ok) {
+      return toast.error("Ocorreu um erro ao cancelar a reserva.");
+    }
+
+    toast.success("Reserva cancelada com sucesso!", {position: 'bottom-center'})
+  }  
 
   return (
     <div>
@@ -52,7 +65,9 @@ const UserReservationItem = ({ reservation }: UserReservationItemProps) => {
             <p className="font-medium text-sm">R${Number(reservation.totalPrice)}</p>
           </div>
 
-          <Button variant='danger' className="mt-5">Cancelar Viagem</Button>
+          <Button variant='danger' className="mt-5" onClick={handleDeleteClick}>
+            Cancelar Viagem
+          </Button>
         </div>
       </div>
      </div>
