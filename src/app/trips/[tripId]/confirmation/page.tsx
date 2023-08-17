@@ -3,13 +3,12 @@
 import { Trip } from '@prisma/client';
 import { format } from "date-fns";
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 import ReactCountryFlag from 'react-country-flag';
 import ptBR from 'date-fns/locale/pt-BR'
 import Button from '@/components/Button';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -26,7 +25,7 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
 
   useEffect(() => {
     const fetchTrip = async () => {
-      const response = await fetch(`http://localhost:3000/api/trips/check`, {
+      const response = await fetch(`/api/trips/check`, {
         method: "POST",
         body: JSON.stringify({
           tripId: params.tripId,
@@ -55,7 +54,7 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
   if(!trip) return null;
 
   const handleBuyClick = async () => {
-   const res = await fetch("http://localhost:3000/api/payment", {
+   const res = await fetch("/api/payment", {
       method: "POST",
       body: Buffer.from(
         JSON.stringify({
@@ -127,7 +126,9 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
         <h3 className="font-semibold mt-5">Hóspedes</h3>
         <p>{guests} hóspedes</p>
 
-        <Button className="" onClick={handleBuyClick}>Finalizar Compras</Button>
+        <Button className="" onClick={handleBuyClick}>
+          Finalizar Compras
+        </Button>
       </div>
     </div>
   );

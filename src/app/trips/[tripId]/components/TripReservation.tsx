@@ -128,7 +128,7 @@ const TripReservation = ({ tripId, maxGuests, tripStartDate, tripEndDate, priceP
               selected={field.value}
               placeholderText="Data Final"
               className="w-full"
-              maxDate={tripEndDate}
+              // maxDate={tripEndDate}
               minDate={startDate ?? tripStartDate}
             />
           )}
